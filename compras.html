@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Compra - Megadeth</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/compra.css" />
+  </head>
+
+  <body>
+    <!-- nav-->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand text-white" href="#">Ticket +</a>
+        <div class="d-flex gap-3">
+          <div class="d-inline-block" style="width: 50px">NOSE1</div>
+          <div class="d-inline-block" style="width: 50px">NOSE2</div>
+          <div class="d-inline-block" style="width: 50px">NOSE3</div>
+          <div class="d-inline-block" style="width: 50px">NOSE4</div>
+        </div>
+      </div>
+    </nav>
+    <!-- hero -->
+    <section
+      class="seccion-principal d-flex align-items-center justify-content-center"
+    >
+      <h1 class="text-white fw-bold">Compra tus entradas</h1>
+    </section>
+
+    <!-- contenido -->
+    <section class="container my-5">
+      <div class="row g-4">
+        <!-- resumen -->
+        <div class="col-md-6">
+          <div class="card bg-dark text-white p-4 h-100">
+            <h3>Megadeth en Lima</h3>
+            <hr />
+
+            <p><strong>Fecha:</strong> 25 Mayo 2026</p>
+            <p><strong>Lugar:</strong> Estadio Nacional</p>
+            <p><strong>Zona:</strong> CAMPO A</p>
+            <p><strong>Tipo:</strong> Preventa Interbank</p>
+
+            <h4 class="mt-3">Precio unitario</h4>
+            <h2 class="text-danger">S/ 280.00</h2>
+          </div>
+        </div>
+
+        <!-- formulario -->
+        <div class="col-md-6">
+          <div class="card p-4 shadow h-100">
+            <h4 class="mb-3">Selecciona tus entradas</h4>
+
+            <label class="form-label">Cantidad de boletos</label>
+            <input type="number" class="form-control mb-3" value="1" min="1" />
+
+            <label class="form-label">Método de pago</label>
+            <select class="form-select mb-3">
+              <option>Tarjeta de crédito</option>
+              <option>Tarjeta de débito</option>
+              <option>Yape / Plin</option>
+            </select>
+
+            <hr />
+
+            <h5>Total estimado</h5>
+            <h3 class="text-danger">S/ 280.00</h3>
+
+            <button class="btn btn-danger w-100 mt-3 fw-bold">
+              Confirmar compra
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--info -->
+    <section class="container text-center mb-5">
+      <small>Los boletos serán enviados a tu correo electrónico.</small>
+    </section>
+
+    <!--footer-->
+    <footer class="pie bg-black text-center py-4 text-white">
+      <img
+        src="/img/logo sin fondo.png"
+        alt=""
+        class="img-fluid img-footer"
+        height="400"
+        width="400"
+      />
+    </footer>
+  </body>
+</html>
