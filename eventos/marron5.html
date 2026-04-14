@@ -27,11 +27,15 @@
       body {
         margin: 0;
       }
+
+      .img-footer {
+        max-width: 350px;
+      }
     </style>
   </head>
   <body>
     <header
-      class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom fixed-top bg-black text-white"
+      class="d-flex flex-wrap justify-content-center py-3 mb-4 fixed-top bg-black text-white"
     >
       <a
         href="/"
@@ -42,15 +46,30 @@
         </svg>
         <span class="fs-4 text-white">Teleplus</span>
       </a>
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">Home</a>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      </ul>
+      <nav class="navbar navbar-expand-md navbar-dark">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a href="#" class="nav-link active" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <img
@@ -61,7 +80,9 @@
 
     <section class="bs-body-bg-override py-5 px-4">
       <div class="container">
-        <p class="text-center border border-white text-white p-3">
+        <p
+          class="text-center border border-white text-white p-3 rounded-3 fw-bold fs-6"
+        >
           La descarga de los E-tickets estará disponible desde 2 días antes de
           la fecha de tu evento o función.
         </p>
@@ -76,27 +97,64 @@
         <div class="mx-auto mb-5 container">
           <div class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
-              <button class="btn btn-primary w-100 py-4">Preventa fans</button>
+              <button class="btn btn-outline-dark border-3 w-100 py-4">
+                Preventa fans
+              </button>
             </div>
             <div class="col">
-              <button class="btn btn-primary w-100 py-4">
+              <button class="btn btn-outline-dark border-3 w-100 py-4">
                 Preventa Interbank
               </button>
             </div>
             <div class="col">
-              <button class="btn btn-primary w-100 py-4">Precio full</button>
+              <button class="btn btn-outline-dark border-3 w-100 py-4">
+                Precio full
+              </button>
             </div>
             <div class="col">
-              <button class="btn btn-primary w-100 py-4">Conadis</button>
+              <button class="btn btn-outline-dark border-3 w-100 py-4">
+                Conadis
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section></section>
+    <section class="bs-body-bg-override py-5 px-4">
+      <div class="container container-fluid px-5 py-5 text-center">
+        <img src="/img/marron5-sin fondo.jpg" alt="" class="img-fluid" />
+        <p>
+          Maroon 5 regresó triunfalmente a Lima con su "Love Is Like Tour",
+          apoderándose del Estadio Nacional en una noche electrizante. Liderados
+          por un Adam Levine impecable, la banda fusionó sus grandes éxitos con
+          una producción visual de vanguardia que hizo vibrar cada rincón del
+          coloso. Desde los primeros acordes, el sonido impecable y la energía
+          de los californianos transformaron el estadio en una celebración
+          masiva del pop-rock global.
+        </p>
 
-    <footer></footer>
+        <p>
+          El setlist fue un viaje de hits ininterrumpidos donde clásicos como
+          "She Will Be Loved" desataron la euforia colectiva. El cierre
+          explosivo con "Sugar" y "Moves Like Jagger" convirtió la cancha en una
+          pista de baile gigante, reafirmando la vigencia de la banda y su
+          conexión especial con el público peruano. Fue un espectáculo de primer
+          nivel que dejó claro por qué siguen siendo referentes mundiales de la
+          música.
+        </p>
+      </div>
+    </section>
+
+    <footer class="bg-dark">
+      <div class="container py-1 text-center">
+        <img
+          src="/img/logo sin fondo.png"
+          alt=""
+          class="img-fluid img-footer"
+        />
+      </div>
+    </footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
