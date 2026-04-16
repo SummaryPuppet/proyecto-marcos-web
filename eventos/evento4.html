@@ -14,21 +14,45 @@
 
   <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand text-white" href="#">Ticket +</a>
-        <div class="d-flex gap-3">
-          <div class="d-inline-block" style="width: 50px">NOSE1</div>
-          <div class="d-inline-block" style="width: 50px">NOSE2</div>
-          <div class="d-inline-block" style="width: 50px">NOSE3</div>
-          <div class="d-inline-block" style="width: 50px">NOSE4</div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid p-0">
+        <a class="navbar-brand px-3" href="/">Ticket +</a>
+        <button
+          class="navbar-toggler mx-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./informacion.html">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./compras.html">Compras</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./ver-boletos.html">Ver boletos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./login.html">Iniciar Sesion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./registro.html">Registrarse</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
 
     <!-- HERO -->
     <section class="seccion-principal">
-      <img src="../img/evento4.png" class="hero-image img-fluid  w-100" >
+      <img src="../img/evento4.png" class="hero-image img-fluid w-100" />
     </section>
 
     <!-- ESCENARIO + PRECIOS -->
@@ -94,9 +118,8 @@
                 <div class="etiqueta">CONADIS</div>
                 <div class="precio">S/ 175.00</div>
               </div>
-
             </div>
-             <div class="fila-precios">
+            <div class="fila-precios">
               <div class="bg-primary etiqueta-fila">GENERAL</div>
 
               <div class="celda-precio">
@@ -126,7 +149,9 @@
 
     <!-- BOTONES -->
     <section class="container text-center mb-5">
-      <h3 class="mb-4">Obtén tus tickets para ver VOCES DEL ROCK LATINO MOYOBAMBA</h3>
+      <h3 class="mb-4">
+        Obtén tus tickets para ver VOCES DEL ROCK LATINO MOYOBAMBA
+      </h3>
 
       <!-- IMPORTANTE: conectados a tu compra.html -->
       <form action="compra.html" method="get">
@@ -162,8 +187,16 @@
     <!-- DESCRIPCIÓN -->
     <section class="descripcion bg-dark py-5 text-center">
       <p><strong>PREPÁRATE MOYOBAMBA</strong></p>
-       <p>Para una noche que marcará generaciones. Un concierto donde la nostalgia, la rebeldía y el amor por el rock en español se unen en un mismo escenario.</p>
-        <p>Revive la energía de Fer Sosa -GUSTAVO CERATI, canta a todo pulmón los clásicos de ENANITOS VERDES con Gael García, siente la fuerza de LOS PRISIONEROS con Chris Victorio</p>
+      <p>
+        Para una noche que marcará generaciones. Un concierto donde la
+        nostalgia, la rebeldía y el amor por el rock en español se unen en un
+        mismo escenario.
+      </p>
+      <p>
+        Revive la energía de Fer Sosa -GUSTAVO CERATI, canta a todo pulmón los
+        clásicos de ENANITOS VERDES con Gael García, siente la fuerza de LOS
+        PRISIONEROS con Chris Victorio
+      </p>
     </section>
 
     <!-- FOOTER -->
