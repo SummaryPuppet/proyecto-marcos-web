@@ -51,11 +51,11 @@ footer a:hover {
 
     .row-cols-md-3 > .col {
         flex: 0 0 auto;
-        width: 50% !important; 
+        width: 50% ; 
     }
 }
 @media (min-width: 800px) {
     .row-cols-md-3 > .col {
-        width: 33.333% !important; 
+        width: 33.333%; 
     }
 }
