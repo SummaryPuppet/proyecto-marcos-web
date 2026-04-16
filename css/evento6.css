@@ -1,0 +1,62 @@
+body {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+}
+
+.navbar {
+  background: transparent;
+}
+
+.info-evento {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.campo-escenario {
+  background-color: #0a1930;
+}
+
+.mapa {
+  max-width: 350px;
+}
+
+.modal-content {
+  background-color: #111;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.modal-content h4 {
+  color: #fff;
+}
+
+.modal-content p {
+  color: #ccc;
+}
+
+/* TARJETAS */
+.zona {
+  background: #111;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.zona:hover {
+  transform: scale(1.03);
+}
+
+/* VIP destacada */
+.vip {
+  border: 2px solid gold;
+}
+
+/* DESCRIPCIÓN */
+.descripcion {
+  background: #000;
+}
+
+footer {
+  background: black;
+}
