@@ -24,9 +24,14 @@ public class Evento {
     private LocalDate fecha_evento;
     private LocalTime hora_evento;
     private String imagen;
+
     @Column(length = 30 )
     private String estado ;
     private LocalDateTime fecha_creacion;
+
+    @OneToMany
+    private Set<Lugar> lugar;
+
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

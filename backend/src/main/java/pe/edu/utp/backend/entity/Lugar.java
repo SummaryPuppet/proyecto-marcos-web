@@ -9,16 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CompraPromo {
+public class Lugar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_compra_promocion;
+    private Long id_lugar;
 
-    @ManyToOne
-    @JoinColumn(name = "id_compra")
-    private Compra compra;
-
-    @ManyToOne
-    @JoinColumn(name = "id_promocion")
-    private Promocion promocion;
+    @Column(length = 150)
+    private String nombre;
+    @Column(length = 150)
+    private String direccion;
+    @Column(length = 150)
+    private String ciudad;
+    private Integer capacidad_total;
 }

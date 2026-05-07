@@ -31,7 +31,6 @@ public class Usuario {
 
     private LocalDate fecha_registro;
 
-
     @ManyToOne
     @JoinColumn(name = "id_rol")
     private Rol rol;
