@@ -1,63 +1,8 @@
-import "./compras.css";
+import "../css/compras.css";
 
-function Compra() {
+function Compras() {
   return (
     <>
-      {/* NAVBAR */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          <a className="navbar-brand" href="#">
-            Ticket +
-          </a>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuNavbar"
-            aria-controls="menuNavbar"
-            aria-expanded="false"
-            aria-label="Alternar navegación"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="menuNavbar">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" href="/">
-                  Inicio
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="/compras">
-                  Compras
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="/informacion">
-                  Sobre Nosotros
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="/registro">
-                  Registrar
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
       {/* HERO */}
       <section className="seccion-principal d-flex align-items-center justify-content-center">
         <h1 className="text-white fw-bold">
@@ -142,7 +87,7 @@ function Compra() {
           Los boletos serán enviados a tu correo electrónico.
         </small>
       </section>
-
+      
       {/* FOOTER */}
       <footer className="pie bg-black text-center py-4 text-white">
         <img
@@ -156,4 +101,4 @@ function Compra() {
   );
 }
 
-export default Compra;
+export default Compras;
