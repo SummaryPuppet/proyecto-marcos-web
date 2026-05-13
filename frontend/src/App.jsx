@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Evento3 from "./pages/eventos/Evento3";
 import Evento5 from "./pages/eventos/Evento5";
+import Evento6 from "./pages/eventos/Evento6";
 import Informacion from "./pages/Informacion";
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Compras" element={<Compras />} />
         <Route path="/evento-3" element={<Evento3 />} />
         <Route path="/evento-5" element={<Evento5 />} />
+        <Route path="/Evento-6" element={<Evento6 />} />
       </Routes>
     </BrowserRouter>
   );
