@@ -61,7 +61,7 @@ useEffect(() => {
       </section>
 
       <section className="container my-5" id="nosotros">
-        <div className="row g-4 align-items-center">
+        <div className="row g-4 align-items-center" bg-primary>
           <div className="col-lg-6">
             <div className="card card-nosotros p-4 h-100">
               <h2 className="h4 mb-3">Nuestra historia</h2>
