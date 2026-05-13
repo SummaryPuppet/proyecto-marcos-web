@@ -9,7 +9,7 @@ import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
 import VerBoletos from "./pages/VerBoletos";
 import Evento3 from "./pages/eventos/Evento3";
-
+import Compras from "./pages/compras";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/nosotros" element={<Informacion />} />
+        <Route path="/compras" element={<Compras />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ver-boletos" element={<VerBoletos />} />
         <Route path="/evento-1" element={<Evento1 />} />
