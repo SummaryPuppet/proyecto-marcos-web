@@ -18,15 +18,15 @@ public class PagoController {
     private PagoService pagoService;
 
     @PostMapping
-    public ResponseEntity<Pago> crear(@RequestBody Pago pago) {
+    public ResponseEntity<Pago> crearpago(@RequestBody Pago pago) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pagoService.guardarpago(pago));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Pago> obtenerPorId(@PathVariable Long id) {
+    public ResponseEntity<Pago> getId(@PathVariable Long id) {
         return ResponseEntity.of(pagoService.getId(id));
     }
     @GetMapping
-    public ResponseEntity<List<Pago>> obtenerTodos() {
+    public ResponseEntity<List<Pago>> getall() {
         return ResponseEntity.ok(pagoService.getall());
     }
 }
