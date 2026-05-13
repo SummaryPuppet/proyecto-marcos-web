@@ -1,51 +1,42 @@
-
-import { useState, useEffect } from "react";
-import "../css/informacion.css";
+import { useEffect, useState } from "react";
 import imagenNosotros from "../assets/img/informacion-fundadores.jpg";
-
+import "../css/informacion.css";
 
 function Informacion() {
   const tabs = [
-  {
-    titulo: "Somos Ticket +",
-    contenido:
-      " Una empresa apasionada por conectar personas con eventos, artistas y experiencias memorables. Cada día trabajamos paraque disfrutes tus momentos de forma fácil y segura.",
-  },
+    {
+      titulo: "Somos Ticket +",
+      contenido:
+        " Una empresa apasionada por conectar personas con eventos, artistas y experiencias memorables. Cada día trabajamos paraque disfrutes tus momentos de forma fácil y segura.",
+    },
 
-  {
-    titulo: "Valores",
-    contenido:
-      "La confianza, innovación y cercanía son la base de todo lo que hacemos.",
-  },
+    {
+      titulo: "Valores",
+      contenido:
+        "La confianza, innovación y cercanía son la base de todo lo que hacemos.",
+    },
 
-  {
-    titulo: "Plataformas",
-    contenido:
-      "Ofrecemos ticketing, streaming y marketplace para eventos.",
-  },
+    {
+      titulo: "Plataformas",
+      contenido: "Ofrecemos ticketing, streaming y marketplace para eventos.",
+    },
 
-  {
-    titulo: "Impacto",
-    contenido:
-      "Ayudamos a artistas y organizadores a crecer junto a sus fans.",
-  },
-];
+    {
+      titulo: "Impacto",
+      contenido:
+        "Ayudamos a artistas y organizadores a crecer junto a sus fans.",
+    },
+  ];
 
-const [tabActiva, setTabActiva] = useState(0);
+  const [tabActiva, setTabActiva] = useState(0);
 
-useEffect(() => {
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setTabActiva((prev) => (prev === tabs.length - 1 ? 0 : prev + 1));
+    }, 3000);
 
-  const intervalo = setInterval(() => {
-
-    setTabActiva((prev) =>
-      prev === tabs.length - 1 ? 0 : prev + 1
-    );
-
-  }, 3000);
-
-  return () => clearInterval(intervalo);
-
-}, []);
+    return () => clearInterval(intervalo);
+  }, []);
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-light">
@@ -60,36 +51,34 @@ useEffect(() => {
         </div>
       </section>
 
-      <section className="container my-5" id="nosotros">
+      <section
+        className="container my-5"
+        id="nosotros"
+        style={{ backgroundColor: "#f8f9fa" }}
+      >
         <div className="row g-4 align-items-center" bg-primary>
           <div className="col-lg-6">
             <div className="card card-nosotros p-4 h-100">
               <h2 className="h4 mb-3">Nuestra historia</h2>
 
               <div className="d-flex gap-3 mb-4 flex-wrap">
+                {tabs.map((tab, index) => (
+                  <button
+                    key={index}
+                    className={`btn ${
+                      tabActiva === index ? "btn-primary" : "btn-dark"
+                    }`}
+                    onClick={() => setTabActiva(index)}
+                  >
+                    {tab.titulo}
+                  </button>
+                ))}
 
-  {tabs.map((tab, index) => (
-    <button
-      key={index}
-      className={`btn ${
-        tabActiva === index
-          ? "btn-primary"
-          : "btn-dark"
-      }`}
-      onClick={() => setTabActiva(index)}
-    >
-      {tab.titulo}
-    </button>
-  ))}
+                <div className="card p-4 shadow">
+                  <h3>{tabs[tabActiva].titulo}</h3>
 
-
-<div className="card p-4 shadow">
-
-  <h3>{tabs[tabActiva].titulo}</h3>
-
-  <p>{tabs[tabActiva].contenido}</p>
-
-</div>
+                  <p>{tabs[tabActiva].contenido}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -103,9 +92,7 @@ useEffect(() => {
               />
 
               <div className="card-body">
-                <h3 className="h5">
-                  Los fundadores de Ticket +
-                </h3>
+                <h3 className="h5">Los fundadores de Ticket +</h3>
 
                 <p className="mb-0 text-muted">
                   Conoce a las personas detrás de Ticket +.
@@ -118,9 +105,7 @@ useEffect(() => {
 
       <footer className="py-4 bg-dark text-white text-center">
         <div className="container">
-          <p className="mb-0">
-            Ticket + | Información y sección de nosotros
-          </p>
+          <p className="mb-0">Ticket + | Información y sección de nosotros</p>
         </div>
       </footer>
     </div>
@@ -128,4 +113,3 @@ useEffect(() => {
 }
 
 export default Informacion;
-
