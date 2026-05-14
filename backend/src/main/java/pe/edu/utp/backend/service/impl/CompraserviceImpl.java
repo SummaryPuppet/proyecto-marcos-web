@@ -1,6 +1,8 @@
 package pe.edu.utp.backend.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import pe.edu.utp.backend.entity.Compra;
 import pe.edu.utp.backend.entity.DetalleCompra;
 import pe.edu.utp.backend.entity.Entrada;
@@ -9,10 +11,13 @@ import pe.edu.utp.backend.repository.DetalleCompraRepository;
 import pe.edu.utp.backend.repository.EntradaRepository;
 import pe.edu.utp.backend.service.CompraService;
 
+@Service
 public class CompraserviceImpl implements CompraService {
     @Autowired
 private CompraRepository compraRepository;
+ @Autowired
 private DetalleCompraRepository detalleCompraRepository;
+ @Autowired
 private EntradaRepository entradaRepository;
     @Override
     public Compra Newcompra(Compra Compra) {
