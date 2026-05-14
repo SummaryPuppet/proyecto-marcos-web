@@ -15,7 +15,7 @@ function Evento4() {
       </section>
 
       {/* Mapa y Tabla de Precios */}
-      <div className="campo-escenario container mt-4">
+      <div className="campo-escenario ">
         <div className="contenedor-escenario d-flex flex-wrap justify-content-center">
           <div className="escenario mb-4">
             <div className="mapa">
@@ -88,12 +88,12 @@ function Evento4() {
       </div>
 
       {/* Botones de Acción */}
-      <section className="container text-center mb-5 py-4">
+      <section className="text-center  py-4">
         <h3 className="mb-4">
           Obtén tus tickets para ver VOCES DEL ROCK LATINO MOYOBAMBA
         </h3>
 
-        <div className="d-grid gap-3 col-lg-6 mx-auto">
+        <div className="d-grid gap-3 col-lg-6 mx-auto container">
           <button className="btn btn-dark w-100 py-3 fw-bold">
             PREVENTA FANS
           </button>
