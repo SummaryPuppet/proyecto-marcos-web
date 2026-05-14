@@ -1,13 +1,14 @@
 package pe.edu.utp.backend.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.utp.backend.entity.Compra;
-import pe.edu.utp.backend.entity.DetalleCompra;
 import pe.edu.utp.backend.entity.Entrada;
 import pe.edu.utp.backend.repository.CompraRepository;
-import pe.edu.utp.backend.repository.DetalleCompraRepository;
 import pe.edu.utp.backend.repository.EntradaRepository;
 import pe.edu.utp.backend.service.CompraService;
 
@@ -15,8 +16,6 @@ import pe.edu.utp.backend.service.CompraService;
 public class CompraserviceImpl implements CompraService {
     @Autowired
 private CompraRepository compraRepository;
- @Autowired
-private DetalleCompraRepository detalleCompraRepository;
  @Autowired
 private EntradaRepository entradaRepository;
     @Override
@@ -50,10 +49,12 @@ private EntradaRepository entradaRepository;
 
         return compraRepository.save(compraexistente);
     }
-    
-
     @Override
-    public DetalleCompra newdetalle(DetalleCompra detalle) {
-    return detalleCompraRepository.save(detalle);
-    }
+    public List<Compra> listcompras() {
+        return compraRepository.findAll();
+    
 }
+    @Override
+    public Optional<Compra> compraPorId(Long id) {
+       return compraRepository.findById(id);
+    }}
