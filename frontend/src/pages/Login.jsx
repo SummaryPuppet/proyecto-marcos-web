@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaCheckCircle, FaEye, FaEyeSlash, FaSignInAlt } from "react-icons/fa";
 import logoLogin from "../assets/img/logo-login.jpeg";
-import "../css/login.css";
-// 1. IMPORTAMOS LA FUNCIÓN DEL SERVICE
+import LayoutPrincipal from "../layouts/LayoutPrincipal";
 import { loginUsuario } from "../services/UsuarioService";
 
 function Login() {
@@ -30,7 +29,7 @@ function Login() {
       register: "¿Aún no tienes cuenta? Regístrate",
       errorEmail: "Debes ingresar el correo",
       errorPass: "Debes ingresar la contraseña",
-      errorInvalidEmail: "Email no válido",
+      errorInvalidEmail: "Correo no válido",
       errorAuth: "Correo o contraseña incorrectos",
       footer: "Vive la música. Siente la experiencia 🎶",
     },
@@ -84,7 +83,6 @@ function Login() {
           contrasena: password,
         });
 
-        // Si recibimos datos (usuario encontrado), mostramos el modal
         if (data) {
           localStorage.setItem("user", JSON.stringify(data));
           setIsLoggedIn(true);
@@ -97,113 +95,133 @@ function Login() {
   };
 
   return (
-    <div
-      className="container-fluid p-0"
-      style={{ backgroundColor: "#f8f9fa", position: "relative" }}
-    >
-      {/* MODAL ÉXITO */}
-      {isLoggedIn && (
-        <div
-          className="d-flex justify-content-center align-items-center"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            zIndex: 1050,
-          }}
-        >
+    <LayoutPrincipal>
+      <div
+        className="container-fluid p-0"
+        style={{ backgroundColor: "#f8f9fa", position: "relative" }}
+      >
+        {/* MODAL ÉXITO */}
+        {isLoggedIn && (
           <div
-            className="bg-white p-5 shadow-lg text-center"
+            className="position-fixed top-0 start-0 w-100 vh-100 d-flex justify-content-center align-items-center"
             style={{
-              borderRadius: "15px",
-              maxWidth: "450px",
-              width: "90%",
+              zIndex: 1050,
+              backgroundColor: "rgba(0,0,0,0.6)",
             }}
           >
-            <h2 className="mb-2 fw-bold" style={{ color: "#333" }}>
-              {t.welcome}
-            </h2>
-            <p className="text-muted mb-4">{t.success}</p>
-            <button
-              className="btn btn-success w-100 py-2 fw-bold"
-              style={{
-                backgroundColor: "#198754",
-                borderRadius: "8px",
-                border: "none",
-              }}
-              onClick={() => (window.location.href = "/")}
+            <div
+              className="bg-white p-5 rounded-4 shadow-lg text-center"
+              style={{ maxWidth: "400px", width: "90%" }}
             >
-              {t.continue}
-            </button>
-          </div>
-        </div>
-      )}
+              <FaCheckCircle
+                className="text-success mb-3"
+                style={{ fontSize: "3rem" }}
+              />
 
-      {/* LOGIN */}
-      <div
-        className={`container-fluid p-0 vh-100 d-flex flex-column ${isLoggedIn ? "pe-none" : ""}`}
-        style={{ filter: isLoggedIn ? "blur(2px)" : "none" }}
-      >
-        <div className="row g-0 flex-grow-1">
-          <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4">
+              <h2 className="fw-bold mb-1" style={{ color: "#333" }}>
+                {t.successTitle}
+              </h2>
+
+              <p className="text-muted mb-4">{t.success}</p>
+
+              <button
+                className="btn btn-success w-100 py-2 fw-bold"
+                style={{
+                  backgroundColor: "#198754",
+                  border: "none",
+                  borderRadius: "10px",
+                }}
+                onClick={() => (window.location.href = "/")}
+              >
+                {t.continue}
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="row g-0 vh-100">
+          {/* FORMULARIO */}
+          <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4 shadow">
+            {/* IDIOMAS */}
             <div className="mb-4">
               <span
-                className={`lang ${language === "es" ? "active" : ""}`}
+                className="px-2"
                 onClick={() => setLanguage("es")}
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  fontWeight: language === "es" ? "bold" : "normal",
+                  color: language === "es" ? "#dc3545" : "black",
+                }}
               >
-                Español
+                ES
               </span>
-              {" | "}
+
+              <span className="text-muted">|</span>
+
               <span
-                className={`lang ${language === "en" ? "active" : ""}`}
+                className="px-2"
                 onClick={() => setLanguage("en")}
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  fontWeight: language === "en" ? "bold" : "normal",
+                  color: language === "en" ? "#dc3545" : "black",
+                }}
               >
-                English
+                EN
               </span>
             </div>
 
             <form
               className="w-75"
-              style={{ maxWidth: "400px" }}
+              style={{ maxWidth: "450px" }}
               onSubmit={handleSubmit}
             >
+              {/* TITULOS */}
+              <div className="text-center mb-4">
+                <div className="badge bg-danger mb-2 px-3 py-2 text-uppercase">
+                  {t.badge}
+                </div>
+
+                <h2 className="fw-bold text-dark m-0">{t.welcome}</h2>
+
+                <p className="text-muted small">{t.subtitle}</p>
+              </div>
+
+              {/* EMAIL */}
               <div className="mb-3">
-                <label className="text-muted small mb-1">{t.email}</label>
+                <label className="fw-semibold text-muted small mb-1">
+                  {t.email}
+                </label>
+
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control form-control-lg shadow-sm"
                   placeholder={t.emailPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  style={{
-                    borderColor:
-                      email.length > 0
-                        ? email.includes("@")
-                          ? "green"
-                          : "red"
-                        : "",
-                  }}
+                  required
                 />
               </div>
 
+              {/* PASSWORD */}
               <div className="mb-3">
-                <label className="text-muted small mb-1">{t.password}</label>
+                <label className="fw-semibold text-muted small mb-1">
+                  {t.password}
+                </label>
+
                 <div className="input-group">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="form-control border-end-0"
+                    className="form-control form-control-lg shadow-sm border-end-0"
                     placeholder={t.passwordPlaceholder}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
+
                   <span
-                    className="input-group-text bg-white border-start-0"
-                    onClick={togglePassword}
+                    className="input-group-text bg-white border-start-0 shadow-sm"
+                    onClick={() => setShowPassword(!showPassword)}
                     style={{ cursor: "pointer" }}
                   >
                     {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -211,44 +229,59 @@ function Login() {
                 </div>
               </div>
 
+              {/* ERRORES */}
               {errors.length > 0 && (
-                <div className="alert alert-danger py-2 small">
+                <div className="alert alert-danger py-2 small text-center border-0 shadow-sm">
                   {errors.map((err, index) => (
                     <div key={index}>{err}</div>
                   ))}
                 </div>
               )}
 
+              {/* BOTON */}
               <button
                 type="submit"
-                className="btn btn-outline-danger w-100 mb-3"
+                className="btn btn-danger btn-lg w-100 mb-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2"
               >
-                {t.login}
+                <FaSignInAlt /> {t.login}
               </button>
 
-              <hr />
+              {/* LINKS */}
+              <div className="text-center mt-3 pt-3 border-top">
+                <div className="mb-2">
+                  <a href="#" className="text-decoration-none small text-muted">
+                    {t.forgot}
+                  </a>
+                </div>
 
-              <div className="login-links d-flex justify-content-between">
-                <a href="#">{t.forgot}</a>
-                <a href="#">{t.register}</a>
+                <a
+                  href="/registro"
+                  className="text-decoration-none small text-danger fw-bold"
+                >
+                  {t.register}
+                </a>
               </div>
             </form>
           </div>
 
+          {/* IMAGEN */}
           <div
-            className="col-md-6 d-none d-md-block"
+            className="col-md-6 d-none d-md-block position-relative"
             style={{
-              background: `url(${logoLogin}) center/cover no-repeat`,
+              background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url(${logoLogin}) center/cover no-repeat`,
             }}
-          ></div>
+          >
+            <div className="position-absolute bottom-0 start-0 p-5 text-white">
+              <h1 className="display-4 fw-bold m-0">Ticket Plus+</h1>
+
+              <p className="lead opacity-75">
+                Tu entrada a los mejores eventos.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* FOOTER */}
-      <footer className="bg-dark text-white text-center p-3 small">
-        {t.footer}
-      </footer>
-    </div>
+    </LayoutPrincipal>
   );
 }
 
