@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/img/logo.jpeg";
+import logo from "../assets/img/logo v2.png";
 import { cerrarSesion } from "../utils/usuario";
 
 export default function Navbar() {
@@ -15,10 +15,7 @@ export default function Navbar() {
             src={logo}
             alt="Ticket Plus Logo"
             style={{
-              height: "50px",
-              backgroundColor: "white",
-              padding: "5px",
-              borderRadius: "2px",
+              height: "70px",
             }}
           />
         </a>
