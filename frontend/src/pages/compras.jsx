@@ -19,20 +19,20 @@ function Compras() {
             {/* RESUMEN */}
             <div className="col-md-6">
               <div className="card bg-dark text-white p-4 h-100">
-                <h3>Megadeth en Lima</h3>
+                <h3 className="text-white">Megadeth en Lima</h3>
 
                 <hr />
 
-                <p>
+                <p className="text-white">
                   <strong>Fecha:</strong> 25 Mayo 2026
                 </p>
-                <p>
+                <p className="text-white">
                   <strong>Lugar:</strong> Estadio Nacional
                 </p>
-                <p>
+                <p className="text-white">
                   <strong>Zona:</strong> CAMPO A
                 </p>
-                <p>
+                <p className="text-white">
                   <strong>Tipo:</strong> Preventa Interbank
                 </p>
 
