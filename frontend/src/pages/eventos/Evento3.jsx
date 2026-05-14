@@ -1,7 +1,7 @@
 import banner from "../../assets/img/banner-evento3.jpg";
 import eventoSinFondo from "../../assets/img/evento3-sin fondo.jpg";
-import logoSinFondo from "../../assets/img/logo sin fondo.png";
 import "../../css/evento3.css";
+import LayoutPrincipal from "../../layouts/LayoutPrincipal";
 
 function TablaPrecios() {
   return (
@@ -291,7 +291,7 @@ function TablaPrecios() {
 
 export default function Evento3() {
   return (
-    <>
+    <LayoutPrincipal>
       <img
         src={banner}
         alt="Marron 5 banner"
@@ -367,12 +367,6 @@ export default function Evento3() {
           </p>
         </div>
       </section>
-
-      <footer className="bg-dark">
-        <div className="container py-1 text-center">
-          <img src={logoSinFondo} alt="" className="img-fluid img-footer" />
-        </div>
-      </footer>
-    </>
+    </LayoutPrincipal>
   );
 }

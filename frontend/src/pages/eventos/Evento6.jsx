@@ -2,118 +2,123 @@ import banner from "../../assets/img/banner-evento6.jpeg";
 import logoEvento from "../../assets/img/logo-evento6.jpeg";
 import mapa from "../../assets/img/mapa_evento6.jpeg";
 import "../../css/evento6.css";
+import LayoutPrincipal from "../../layouts/LayoutPrincipal";
 
 export default function Evento6() {
   return (
-    <div>
-      <section className="seccion-principal">
-        <img src={banner} className="img-fluid" alt="Sebastian Yatra Banner" />
-      </section>
+    <LayoutPrincipal>
+      <div>
+        <section className="seccion-principal" style={{ height: "100%" }}>
+          <img
+            src={banner}
+            className="img-fluid"
+            alt="Sebastian Yatra Banner"
+          />
+        </section>
 
-      <div className="campo-escenario">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 text-center mb-4">
-              <img src={mapa} className="img-fluid mapa" alt="" />
-            </div>
-
-            <div className="col-lg-6">
-              <div className="zona vip">
-                <h5>PRIMERAS FILAS</h5>
-                <p>Preventa: S/ 617.50</p>
-                <p>Regular: S/ 747.50</p>
-                <button
-                  className="btn btn-danger w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#buyModal"
-                >
-                  Comprar
-                </button>
+        <div className="campo-escenario">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 text-center mb-4">
+                <img src={mapa} className="img-fluid mapa" alt="" />
               </div>
 
-              <div className="zona">
-                <h5>DIAMANTE</h5>
-                <p>Preventa: S/ 522.50</p>
-                <p>Regular: S/ 632.50</p>
-                <button
-                  className="btn btn-primary w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#buyModal"
-                >
-                  Comprar
-                </button>
-              </div>
+              <div className="col-lg-6">
+                <div className="zona vip">
+                  <h5>PRIMERAS FILAS</h5>
+                  <p>Preventa: S/ 617.50</p>
+                  <p>Regular: S/ 747.50</p>
+                  <button
+                    className="btn btn-danger w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#buyModal"
+                  >
+                    Comprar
+                  </button>
+                </div>
 
-              <div className="zona">
-                <h5>PLATINUM</h5>
-                <p>Preventa: S/ 380.00</p>
-                <p>Regular: S/ 460.00</p>
-                <button
-                  className="btn btn-primary w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#buyModal"
-                >
-                  Comprar
-                </button>
-              </div>
+                <div className="zona">
+                  <h5>DIAMANTE</h5>
+                  <p>Preventa: S/ 522.50</p>
+                  <p>Regular: S/ 632.50</p>
+                  <button
+                    className="btn btn-primary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#buyModal"
+                  >
+                    Comprar
+                  </button>
+                </div>
 
-              <div className="zona">
-                <h5>GOLDEN</h5>
-                <p>Preventa: S/ 285.00</p>
-                <p>Regular: S/ 345.00</p>
-                <button
-                  className="btn btn-primary w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#buyModal"
-                >
-                  Comprar
-                </button>
-              </div>
+                <div className="zona">
+                  <h5>PLATINUM</h5>
+                  <p>Preventa: S/ 380.00</p>
+                  <p>Regular: S/ 460.00</p>
+                  <button
+                    className="btn btn-primary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#buyModal"
+                  >
+                    Comprar
+                  </button>
+                </div>
 
-              <div className="zona">
-                <h5>SILVER</h5>
-                <p>Preventa: S/ 237.50</p>
-                <p>Regular: S/ 287.50</p>
-                <button
-                  className="btn btn-secondary w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#buyModal"
-                >
-                  Comprar
-                </button>
+                <div className="zona">
+                  <h5>GOLDEN</h5>
+                  <p>Preventa: S/ 285.00</p>
+                  <p>Regular: S/ 345.00</p>
+                  <button
+                    className="btn btn-primary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#buyModal"
+                  >
+                    Comprar
+                  </button>
+                </div>
+
+                <div className="zona">
+                  <h5>SILVER</h5>
+                  <p>Preventa: S/ 237.50</p>
+                  <p>Regular: S/ 287.50</p>
+                  <button
+                    className="btn btn-secondary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#buyModal"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <section className="descripcion bg-dark py-5 text-center">
-        <img
-          src={logoEvento}
-          className="mb-3 img-fluid"
-          alt="Sebastian Yatra Logo"
-        />
+        <section className="descripcion bg-dark py-5 text-center">
+          <img
+            src={logoEvento}
+            className="mb-3 img-fluid"
+            alt="Sebastian Yatra Logo"
+          />
 
-        <p className="text-center mx-auto w-75">
-          Sebastián Yatra llega a Lima con su gira internacional. Vive una noche
-          única con sus mejores éxitos como
-          <strong>“Tacones Rojos”</strong> y <strong>“Cristina”</strong>.
-        </p>
-      </section>
+          <p className="text-center mx-auto w-75">
+            Sebastián Yatra llega a Lima con su gira internacional. Vive una
+            noche única con sus mejores éxitos como
+            <strong>“Tacones Rojos”</strong> y <strong>“Cristina”</strong>.
+          </p>
+        </section>
 
-      <div className="modal fade" id="buyModal">
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content text-center p-4">
-            <h4>Compra simulada</h4>
-            <p>Serás redirigido a compras</p>
-            <button className="btn btn-success" onClick="goToBuy()">
-              Continuar
-            </button>
+        <div className="modal fade" id="buyModal">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content text-center p-4">
+              <h4>Compra simulada</h4>
+              <p>Serás redirigido a compras</p>
+              <button className="btn btn-success" onClick="goToBuy()">
+                Continuar
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <footer className="text-center py-4">Ticket + © 2026</footer>
-    </div>
+    </LayoutPrincipal>
   );
 }

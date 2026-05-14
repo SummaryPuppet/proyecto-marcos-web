@@ -1,23 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Compras from "./pages/compras";
+import Dashboard from "./pages/Dashboard";
 import Evento1 from "./pages/eventos/Evento1";
+import Evento3 from "./pages/eventos/Evento3";
 import Evento5 from "./pages/eventos/Evento5";
 import Evento6 from "./pages/eventos/Evento6";
 import Informacion from "./pages/Informacion";
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
-import VerBoletos from "./pages/VerBoletos";
-import Evento3 from "./pages/eventos/Evento3";
-import Registro from "./pages/Registro";
 import Perfil from "./pages/Perfil";
-import Compras from "./pages/compras";
-import Dashboard from "./pages/Dashboard"; 
+import Registro from "./pages/Registro";
+import VerBoletos from "./pages/VerBoletos";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/nosotros" element={<Informacion />} />

@@ -3,7 +3,6 @@ import "../css/dashboard.css";
 function Dashboard() {
   return (
     <div className="dashboard-container">
-
       <aside className="sidebar">
         <h2>TelePlus Admin</h2>
 
@@ -16,11 +15,9 @@ function Dashboard() {
       </aside>
 
       <main className="dashboard-content">
-
         <h1>Dashboard Administrador</h1>
 
         <div className="cards">
-
           <div className="card">
             <h3>Eventos</h3>
             <p>12</p>
@@ -40,7 +37,6 @@ function Dashboard() {
             <h3>Ganancias</h3>
             <p>S/ 15,000</p>
           </div>
-
         </div>
 
         <div className="table-section">
@@ -70,7 +66,6 @@ function Dashboard() {
             </tbody>
           </table>
         </div>
-
       </main>
     </div>
   );

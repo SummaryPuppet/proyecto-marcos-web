@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import imagenNosotros from "../assets/img/informacion-fundadores.jpg";
 import "../css/informacion.css";
+import LayoutPrincipal from "../layouts/LayoutPrincipal";
 
 function Informacion() {
   const tabs = [
@@ -39,76 +40,72 @@ function Informacion() {
   }, []);
 
   return (
-    <div className="d-flex flex-column min-vh-100 bg-light">
-      <section className="hero-nosotros text-center">
-        <div className="container">
-          <h1>Nosotros</h1>
+    <LayoutPrincipal>
+      <div className="d-flex flex-column min-vh-100 bg-light">
+        <section className="hero-nosotros text-center">
+          <div className="container">
+            <h1>Nosotros</h1>
 
-          <p className="lead mt-3">
-            Conoce más sobre Ticket +, nuestra historia, valores y el impacto
-            que buscamos generar en el mundo de los eventos.
-          </p>
-        </div>
-      </section>
+            <p className="lead mt-3">
+              Conoce más sobre Ticket +, nuestra historia, valores y el impacto
+              que buscamos generar en el mundo de los eventos.
+            </p>
+          </div>
+        </section>
 
-      <section
-        className="container my-5"
-        id="nosotros"
-        style={{ backgroundColor: "#f8f9fa" }}
-      >
-        <div className="row g-4 align-items-center" bg-primary>
-          <div className="col-lg-6">
-            <div className="card card-nosotros p-4 h-100">
-              <h2 className="h4 mb-3">Nuestra historia</h2>
+        <section
+          className="container my-5"
+          id="nosotros"
+          style={{ backgroundColor: "#f8f9fa" }}
+        >
+          <div className="row g-4 align-items-center" bg-primary>
+            <div className="col-lg-6">
+              <div className="card card-nosotros p-4 h-100">
+                <h2 className="h4 mb-3">Nuestra historia</h2>
 
-              <div className="d-flex gap-3 mb-4 flex-wrap">
-                {tabs.map((tab, index) => (
-                  <button
-                    key={index}
-                    className={`btn ${
-                      tabActiva === index ? "btn-primary" : "btn-dark"
-                    }`}
-                    onClick={() => setTabActiva(index)}
-                  >
-                    {tab.titulo}
-                  </button>
-                ))}
+                <div className="d-flex gap-3 mb-4 flex-wrap">
+                  {tabs.map((tab, index) => (
+                    <button
+                      key={index}
+                      className={`btn ${
+                        tabActiva === index ? "btn-primary" : "btn-dark"
+                      }`}
+                      onClick={() => setTabActiva(index)}
+                    >
+                      {tab.titulo}
+                    </button>
+                  ))}
 
-                <div className="card p-4 shadow">
-                  <h3>{tabs[tabActiva].titulo}</h3>
+                  <div className="card p-4 shadow">
+                    <h3>{tabs[tabActiva].titulo}</h3>
 
-                  <p>{tabs[tabActiva].contenido}</p>
+                    <p>{tabs[tabActiva].contenido}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-6">
+              <div className="card card-nosotros overflow-hidden h-100">
+                <img
+                  src={imagenNosotros}
+                  alt="Fundadores"
+                  className="img-fluid imagen-nosotros"
+                />
+
+                <div className="card-body">
+                  <h3 className="h5">Los fundadores de Ticket +</h3>
+
+                  <p className="mb-0 text-muted">
+                    Conoce a las personas detrás de Ticket +.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="col-lg-6">
-            <div className="card card-nosotros overflow-hidden h-100">
-              <img
-                src={imagenNosotros}
-                alt="Fundadores"
-                className="img-fluid imagen-nosotros"
-              />
-
-              <div className="card-body">
-                <h3 className="h5">Los fundadores de Ticket +</h3>
-
-                <p className="mb-0 text-muted">
-                  Conoce a las personas detrás de Ticket +.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="py-4 bg-dark text-white text-center">
-        <div className="container">
-          <p className="mb-0">Ticket + | Información y sección de nosotros</p>
-        </div>
-      </footer>
-    </div>
+        </section>
+      </div>
+    </LayoutPrincipal>
   );
 }
 

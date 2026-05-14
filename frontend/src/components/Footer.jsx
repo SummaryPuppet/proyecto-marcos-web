@@ -1,0 +1,60 @@
+export default function Footer() {
+  return (
+    <footer className="bg-black text-white">
+      <div className="container py-4">
+        <div className="row">
+          <h2 className="fw-bold text-start pb-3">Ticket +</h2>
+          <div className="container">
+            <p className="small text-secondary">
+              Al continuar en esta página, usted acuerda registrarse por
+              nuestros{" "}
+              <a href="#" className="text-white text-decoration-underline">
+                términos de uso
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-black text-white py-4 border-top border-secondary">
+        <div className="container">
+          <div className="d-flex flex-wrap gap-2 align-items-center mb-3">
+            <a
+              href="#"
+              className="text-white text-decoration-none border-end pe-2 me-1"
+            >
+              Política de Compra
+            </a>
+            <a
+              href="#"
+              className="text-white text-decoration-none border-end pe-2 me-1"
+            >
+              Política de privacidad
+            </a>
+            <a
+              href="#"
+              className="text-white text-decoration-none border-end pe-2 me-1"
+            >
+              Política de cookies
+            </a>
+            <a href="#" className="text-white text-decoration-none">
+              Término de Uso
+            </a>
+
+            <span
+              className="rounded-3 bg-success p-2 ms-md-3"
+              style={{ fontSize: "0.8rem" }}
+            >
+              Preferencias de cookies.
+            </span>
+          </div>
+
+          <p className="small text-secondary mb-0">
+            © 2026 TicketBoost. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { FaEye, FaEyeSlash, FaSignInAlt, FaCheckCircle } from "react-icons/fa";
-import { loginUsuario } from "../services/UsuarioService";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logoLogin from "../assets/img/logo-login.jpeg";
+import "../css/login.css";
+// 1. IMPORTAMOS LA FUNCIÓN DEL SERVICE
+import { loginUsuario } from "../services/UsuarioService";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -28,7 +30,7 @@ function Login() {
       register: "¿Aún no tienes cuenta? Regístrate",
       errorEmail: "Debes ingresar el correo",
       errorPass: "Debes ingresar la contraseña",
-      errorInvalidEmail: "Correo no válido",
+      errorInvalidEmail: "Email no válido",
       errorAuth: "Correo o contraseña incorrectos",
       footer: "Vive la música. Siente la experiencia 🎶",
     },
@@ -52,7 +54,7 @@ function Login() {
       errorInvalidEmail: "Invalid email",
       errorAuth: "Invalid email or password",
       footer: "Live the music. Feel the experience 🎶",
-    }
+    },
   };
 
   const t = texts[language];
@@ -79,14 +81,14 @@ function Login() {
       try {
         const data = await loginUsuario({
           correo: email,
-          contrasena: password
+          contrasena: password,
         });
 
+        // Si recibimos datos (usuario encontrado), mostramos el modal
         if (data) {
           localStorage.setItem("user", JSON.stringify(data));
           setIsLoggedIn(true);
         }
-
       } catch (error) {
         console.error("Error capturado:", error);
         setErrors([t.errorAuth]);
@@ -99,40 +101,38 @@ function Login() {
       className="container-fluid p-0"
       style={{ backgroundColor: "#f8f9fa", position: "relative" }}
     >
-
       {/* MODAL ÉXITO */}
       {isLoggedIn && (
         <div
-          className="position-fixed top-0 start-0 w-100 vh-100 d-flex justify-content-center align-items-center"
+          className="d-flex justify-content-center align-items-center"
           style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             zIndex: 1050,
-            backgroundColor: "rgba(0,0,0,0.6)"
           }}
         >
           <div
-            className="bg-white p-5 rounded-4 shadow-lg text-center"
-            style={{ maxWidth: "400px", width: "90%" }}
+            className="bg-white p-5 shadow-lg text-center"
+            style={{
+              borderRadius: "15px",
+              maxWidth: "450px",
+              width: "90%",
+            }}
           >
-            <FaCheckCircle
-              className="text-success mb-3"
-              style={{ fontSize: "3rem" }}
-            />
-
-            <h2
-              className="fw-bold mb-1"
-              style={{ color: "#333" }}
-            >
-              {t.successTitle}
+            <h2 className="mb-2 fw-bold" style={{ color: "#333" }}>
+              {t.welcome}
             </h2>
-
             <p className="text-muted mb-4">{t.success}</p>
-
             <button
               className="btn btn-success w-100 py-2 fw-bold"
               style={{
                 backgroundColor: "#198754",
+                borderRadius: "8px",
                 border: "none",
-                borderRadius: "10px"
               }}
               onClick={() => (window.location.href = "/")}
             >
@@ -142,158 +142,105 @@ function Login() {
         </div>
       )}
 
-      <div className="row g-0 vh-100">
-
-        {/* FORMULARIO */}
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4 shadow">
-
-          {/* IDIOMAS */}
-          <div className="mb-4">
-            <span
-              className="px-2"
-              onClick={() => setLanguage("es")}
-              style={{
-                cursor: "pointer",
-                fontWeight: language === "es" ? "bold" : "normal",
-                color: language === "es" ? "#dc3545" : "black"
-              }}
-            >
-              ES
-            </span>
-
-            <span className="text-muted">|</span>
-
-            <span
-              className="px-2"
-              onClick={() => setLanguage("en")}
-              style={{
-                cursor: "pointer",
-                fontWeight: language === "en" ? "bold" : "normal",
-                color: language === "en" ? "#dc3545" : "black"
-              }}
-            >
-              EN
-            </span>
-          </div>
-
-          <form
-            className="w-75"
-            style={{ maxWidth: "450px" }}
-            onSubmit={handleSubmit}
-          >
-
-            {/* TITULOS */}
-            <div className="text-center mb-4">
-              <div className="badge bg-danger mb-2 px-3 py-2 text-uppercase">
-                {t.badge}
-              </div>
-
-              <h2 className="fw-bold text-dark m-0">
-                {t.welcome}
-              </h2>
-
-              <p className="text-muted small">
-                {t.subtitle}
-              </p>
-            </div>
-
-            {/* EMAIL */}
-            <div className="mb-3">
-              <label className="fw-semibold text-muted small mb-1">
-                {t.email}
-              </label>
-
-              <input
-                type="email"
-                className="form-control form-control-lg shadow-sm"
-                placeholder={t.emailPlaceholder}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            {/* PASSWORD */}
-            <div className="mb-3">
-              <label className="fw-semibold text-muted small mb-1">
-                {t.password}
-              </label>
-
-              <div className="input-group">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="form-control form-control-lg shadow-sm border-end-0"
-                  placeholder={t.passwordPlaceholder}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-
-                <span
-                  className="input-group-text bg-white border-start-0 shadow-sm"
-                  onClick={() => setShowPassword(!showPassword)}
-                  style={{ cursor: "pointer" }}
-                >
-                  {showPassword ? <FaEye /> : <FaEyeSlash />}
-                </span>
-              </div>
-            </div>
-
-            {/* ERRORES */}
-            {errors.length > 0 && (
-              <div className="alert alert-danger py-2 small text-center border-0 shadow-sm">
-                {errors.map((err, index) => (
-                  <div key={index}>{err}</div>
-                ))}
-              </div>
-            )}
-
-            {/* BOTON */}
-            <button
-              type="submit"
-              className="btn btn-danger btn-lg w-100 mb-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2"
-            >
-              <FaSignInAlt /> {t.login}
-            </button>
-
-            {/* LINKS */}
-            <div className="text-center mt-3 pt-3 border-top">
-              <div className="mb-2">
-                <a
-                  href="#"
-                  className="text-decoration-none small text-muted"
-                >
-                  {t.forgot}
-                </a>
-              </div>
-
-              <a
-                href="/registro"
-                className="text-decoration-none small text-danger fw-bold"
+      {/* LOGIN */}
+      <div
+        className={`container-fluid p-0 vh-100 d-flex flex-column ${isLoggedIn ? "pe-none" : ""}`}
+        style={{ filter: isLoggedIn ? "blur(2px)" : "none" }}
+      >
+        <div className="row g-0 flex-grow-1">
+          <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4">
+            <div className="mb-4">
+              <span
+                className={`lang ${language === "es" ? "active" : ""}`}
+                onClick={() => setLanguage("es")}
+                style={{ cursor: "pointer" }}
               >
-                {t.register}
-              </a>
+                Español
+              </span>
+              {" | "}
+              <span
+                className={`lang ${language === "en" ? "active" : ""}`}
+                onClick={() => setLanguage("en")}
+                style={{ cursor: "pointer" }}
+              >
+                English
+              </span>
             </div>
 
-          </form>
-        </div>
+            <form
+              className="w-75"
+              style={{ maxWidth: "400px" }}
+              onSubmit={handleSubmit}
+            >
+              <div className="mb-3">
+                <label className="text-muted small mb-1">{t.email}</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder={t.emailPlaceholder}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{
+                    borderColor:
+                      email.length > 0
+                        ? email.includes("@")
+                          ? "green"
+                          : "red"
+                        : "",
+                  }}
+                />
+              </div>
 
-        {/* IMAGEN */}
-        <div
-          className="col-md-6 d-none d-md-block position-relative"
-          style={{
-            background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url(${logoLogin}) center/cover no-repeat`
-          }}
-        >
-          <div className="position-absolute bottom-0 start-0 p-5 text-white">
-            <h1 className="display-4 fw-bold m-0">
-              Ticket Plus+
-            </h1>
+              <div className="mb-3">
+                <label className="text-muted small mb-1">{t.password}</label>
+                <div className="input-group">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    className="form-control border-end-0"
+                    placeholder={t.passwordPlaceholder}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <span
+                    className="input-group-text bg-white border-start-0"
+                    onClick={togglePassword}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
+                </div>
+              </div>
 
-            <p className="lead opacity-75">
-              Tu entrada a los mejores eventos.
-            </p>
+              {errors.length > 0 && (
+                <div className="alert alert-danger py-2 small">
+                  {errors.map((err, index) => (
+                    <div key={index}>{err}</div>
+                  ))}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="btn btn-outline-danger w-100 mb-3"
+              >
+                {t.login}
+              </button>
+
+              <hr />
+
+              <div className="login-links d-flex justify-content-between">
+                <a href="#">{t.forgot}</a>
+                <a href="#">{t.register}</a>
+              </div>
+            </form>
           </div>
+
+          <div
+            className="col-md-6 d-none d-md-block"
+            style={{
+              background: `url(${logoLogin}) center/cover no-repeat`,
+            }}
+          ></div>
         </div>
       </div>
 
