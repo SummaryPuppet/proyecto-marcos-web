@@ -12,7 +12,7 @@ import Evento3 from "./pages/eventos/Evento3";
 import Registro from "./pages/Registro";
 import Perfil from "./pages/Perfil";
 import Compras from "./pages/compras";
-
+import Dashboard from "./pages/Dashboard"; 
 function App() {
   return (
     <BrowserRouter>
@@ -28,9 +28,9 @@ function App() {
         <Route path="/evento-3" element={<Evento3 />} />
         <Route path="/evento-5" element={<Evento5 />} />
         <Route path="/Evento-6" element={<Evento6 />} />
-        {/* Tus nuevas rutas */}
         <Route path="/registro" element={<Registro />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
