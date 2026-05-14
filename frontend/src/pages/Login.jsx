@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../css/login.css";
 import logoLogin from "../assets/img/logo-login.jpeg";
+// 1. IMPORTAMOS LA FUNCIÓN DEL SERVICE
+import { loginUsuario } from "../services/UsuarioService";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,6 +28,7 @@ function Login() {
       errorEmail: "Debes ingresar el email",
       errorPass: "Debes ingresar la contraseña",
       errorInvalidEmail: "Email no válido",
+      errorAuth: "Correo o contraseña incorrectos", 
       footer: "Vive la música. Siente la experiencia 🎶",
     },
     en: {
@@ -42,6 +45,7 @@ function Login() {
       errorEmail: "You must enter your email",
       errorPass: "You must enter your password",
       errorInvalidEmail: "Invalid email",
+      errorAuth: "Invalid email or password",
       footer: "Live the music. Feel the experience 🎶",
     }
   };
@@ -49,17 +53,35 @@ function Login() {
   const t = texts[language];
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const handleSubmit = (e) => {
+  // 2. MODIFICAMOS EL HANDLESUBMIT PARA QUE SEA ASÍNCRONO
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let newErrors = [];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    // Validaciones de formato
     if (email.trim() === "") newErrors.push(t.errorEmail);
     else if (!emailRegex.test(email)) newErrors.push(t.errorInvalidEmail);
     if (password.trim() === "") newErrors.push(t.errorPass);
 
     setErrors(newErrors);
-    if (newErrors.length === 0) setIsLoggedIn(true);
+
+    // 3. SI EL FORMATO ES CORRECTO, VALIDAMOS CON EL BACKEND
+    if (newErrors.length === 0) {
+      try {
+        const data = await loginUsuario({ correo: email, contrasena: password });
+        
+        // Si recibimos datos (usuario encontrado), mostramos el modal
+        if (data) {
+          localStorage.setItem("user", JSON.stringify(data));
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        // USAMOS LA VARIABLE AQUÍ PARA QUE DESAPAREZCA EL AVISO
+        console.error("Error capturado:", error);
+        setErrors([t.errorAuth]);
+      }
+    }
   };
 
   return (
@@ -100,7 +122,6 @@ function Login() {
       {/* LOGIN */}
       <div className={`container-fluid p-0 vh-100 d-flex flex-column ${isLoggedIn ? 'pe-none' : ''}`} style={{ filter: isLoggedIn ? 'blur(2px)' : 'none' }}>
         <div className="row g-0 flex-grow-1">
-          {/* LADO IZQUIERDO */}
           <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4">
             <div className="mb-4">
               <span className={`lang ${language === "es" ? "active" : ""}`} onClick={() => setLanguage("es")} style={{ cursor: 'pointer' }}>Español</span>
@@ -139,7 +160,7 @@ function Login() {
 
               {errors.length > 0 && (
                 <div className="alert alert-danger py-2 small">
-                  {errors.map((error, index) => <div key={index}>{error}</div>)}
+                  {errors.map((err, index) => <div key={index}>{err}</div>)}
                 </div>
               )}
 
@@ -154,7 +175,6 @@ function Login() {
             </form>   
           </div>
 
-          {/* LD */}
           <div
             className="col-md-6 d-none d-md-block"
             style={{

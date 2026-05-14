@@ -1,0 +1,43 @@
+const API_URL = "http://localhost:8080/api/usuarios";
+
+export const loginUsuario = async (credenciales) => {
+    try {
+        const respuesta = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credenciales)
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Credenciales incorrectas");
+        }
+
+        return await respuesta.json(); 
+    } catch (error) {
+        console.error("Error en loginUsuario:", error);
+        throw error;
+    }
+};
+
+export const registrarUsuario = async (nuevoUsuario) => {
+    try {
+        const respuesta = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoUsuario)
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Error al registrar el usuario");
+        }
+
+        return await respuesta.json();
+    } catch (error) {
+        console.error("Error en registrarUsuario:", error);
+        throw error;
+    }
+};
