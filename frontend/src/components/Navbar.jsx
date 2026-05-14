@@ -1,7 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.jpeg";
+import { cerrarSesion } from "../utils/usuario";
 
 export default function Navbar() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid p-0">
@@ -65,36 +69,64 @@ export default function Navbar() {
                 Compras
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                to="/ver-boletos"
-              >
-                Ver boletos
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                to="/login"
-              >
-                Iniciar Sesion
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                to="/registro"
-              >
-                Registrarse
-              </NavLink>
-            </li>
+            {user === null ? (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/login"
+                  >
+                    Iniciar Sesion
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/registro"
+                  >
+                    Registrarse
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/ver-boletos"
+                  >
+                    Ver boletos
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/perfil"
+                  >
+                    Mi Perfil
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="nav-link btn btn-link"
+                    onClick={() => {
+                      cerrarSesion();
+                      navigate("/");
+                    }}
+                  >
+                    Cerrar Sesión
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
