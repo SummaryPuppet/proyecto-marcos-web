@@ -19,6 +19,7 @@
 
 .sidebar h2{
   margin-bottom: 30px;
+  color: rgb(245, 88, 88);
 }
 
 .sidebar ul{
@@ -54,10 +55,15 @@
   margin-top: 10px;
   font-size: 24px;
   font-weight: bold;
+  color: black;
+}
+
+.card h3{
+  color: #555;
 }
 
 .table-section{
-  background: white;
+  background: rgb(219, 73, 73);
   padding: 20px;
   border-radius: 10px;
 }
@@ -70,6 +76,6 @@ table{
 
 th, td{
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
   text-align: left;
 }
