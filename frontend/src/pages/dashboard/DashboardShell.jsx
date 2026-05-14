@@ -1,6 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { cerrarSesionDashboard } from "../../utils/dashboardAuth";
 
 function DashboardShell({ activeSection, title, subtitle, children }) {
+  const navigate = useNavigate();
   const navItems = [
     { to: "/dashboard", label: "Dashboard", section: "dashboard" },
     { to: "/dashboard/eventos", label: "Eventos", section: "eventos" },
@@ -30,7 +32,18 @@ function DashboardShell({ activeSection, title, subtitle, children }) {
         </nav>
 
         <div className="sidebar-footer">
-          Gestión interna de eventos y usuarios
+          <p>Gestión interna de eventos y usuarios</p>
+
+          <button
+            type="button"
+            className="sidebar-logout"
+            onClick={() => {
+              cerrarSesionDashboard();
+              navigate("/dashboard/login", { replace: true });
+            }}
+          >
+            Cerrar sesión
+          </button>
         </div>
       </aside>
 

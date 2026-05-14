@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Compras from "./pages/compras";
+import DashboardGuard from "./pages/dashboard/DashboardGuard";
+import DashboardLogin from "./pages/dashboard/DashboardLogin";
 import EventosDashboard from "./pages/dashboard/EventosDashboard";
 import IndexDashboard from "./pages/dashboard/IndexDashboard";
 import UsuariosDashboard from "./pages/dashboard/UsuariosDashboard";
@@ -31,9 +33,13 @@ function App() {
         <Route path="/evento-6" element={<Evento6 />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/dashboard" element={<IndexDashboard />} />
-        <Route path="/dashboard/eventos" element={<EventosDashboard />} />
-        <Route path="/dashboard/usuarios" element={<UsuariosDashboard />} />
+        <Route path="/dashboard/login" element={<DashboardLogin />} />
+
+        <Route element={<DashboardGuard />}>
+          <Route path="/dashboard" element={<IndexDashboard />} />
+          <Route path="/dashboard/eventos" element={<EventosDashboard />} />
+          <Route path="/dashboard/usuarios" element={<UsuariosDashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

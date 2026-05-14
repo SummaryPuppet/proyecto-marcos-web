@@ -73,6 +73,25 @@
   font-size: 0.9rem;
   color: #94a3b8;
   line-height: 1.5;
+  display: grid;
+  gap: 12px;
+}
+
+.sidebar-logout {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-logout:hover {
+  background: rgba(239, 68, 68, 0.22);
+  transform: translateY(-1px);
 }
 
 .dashboard-content {
