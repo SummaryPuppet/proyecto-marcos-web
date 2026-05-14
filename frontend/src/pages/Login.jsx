@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "../css/login.css";
-import logoLogin from "../assets/img/logo-login.jpeg";
-// 1. IMPORTAMOS LA FUNCIÓN DEL SERVICE
+import { FaEye, FaEyeSlash, FaSignInAlt, FaCheckCircle } from "react-icons/fa";
 import { loginUsuario } from "../services/UsuarioService";
+import logoLogin from "../assets/img/logo-login.jpeg";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -15,30 +13,37 @@ function Login() {
 
   const texts = {
     es: {
-      welcome: "Bienvenido a Ticket Plus+ 🥳",
+      welcome: "¡Bienvenido a Ticket Plus+!",
+      successTitle: "Bienvenido a Ticket Plus+ 🥳",
       success: "Login exitoso",
       continue: "Continuar",
-      email: "Email",
-      emailPlaceholder: "Ingresa tu email",
+      subtitle: "Ingresa para vivir la mejor experiencia en eventos.",
+      badge: "Inicio de Sesión",
+      email: "Correo Electrónico",
+      emailPlaceholder: "Ingresa tu correo",
       password: "Contraseña",
-      passwordPlaceholder: "Contraseña",
-      login: "Ingresa",
+      passwordPlaceholder: "Ingresa tu contraseña",
+      login: "Ingresar",
       forgot: "¿Olvidaste tu contraseña?",
       register: "¿Aún no tienes cuenta? Regístrate",
-      errorEmail: "Debes ingresar el email",
+      errorEmail: "Debes ingresar el correo",
       errorPass: "Debes ingresar la contraseña",
-      errorInvalidEmail: "Email no válido",
-      errorAuth: "Correo o contraseña incorrectos", 
+      errorInvalidEmail: "Correo no válido",
+      errorAuth: "Correo o contraseña incorrectos",
       footer: "Vive la música. Siente la experiencia 🎶",
     },
+
     en: {
-      welcome: "Welcome to Ticket Plus+ 🥳",
+      welcome: "Welcome to Ticket Plus+!",
+      successTitle: "Welcome to Ticket Plus+ 🥳",
       success: "Login successful",
       continue: "Continue",
-      email: "Email",
+      subtitle: "Sign in for the best event experience.",
+      badge: "Login",
+      email: "Email Address",
       emailPlaceholder: "Enter your email",
       password: "Password",
-      passwordPlaceholder: "Password",
+      passwordPlaceholder: "Enter your password",
       login: "Sign In",
       forgot: "Forgot your password?",
       register: "Don't have an account yet? Sign up",
@@ -51,33 +56,38 @@ function Login() {
   };
 
   const t = texts[language];
-  const togglePassword = () => setShowPassword(!showPassword);
 
-  // 2. MODIFICAMOS EL HANDLESUBMIT PARA QUE SEA ASÍNCRONO
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     let newErrors = [];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Validaciones de formato
-    if (email.trim() === "") newErrors.push(t.errorEmail);
-    else if (!emailRegex.test(email)) newErrors.push(t.errorInvalidEmail);
-    if (password.trim() === "") newErrors.push(t.errorPass);
+    if (email.trim() === "") {
+      newErrors.push(t.errorEmail);
+    } else if (!emailRegex.test(email)) {
+      newErrors.push(t.errorInvalidEmail);
+    }
+
+    if (password.trim() === "") {
+      newErrors.push(t.errorPass);
+    }
 
     setErrors(newErrors);
 
-    // 3. SI EL FORMATO ES CORRECTO, VALIDAMOS CON EL BACKEND
     if (newErrors.length === 0) {
       try {
-        const data = await loginUsuario({ correo: email, contrasena: password });
-        
-        // Si recibimos datos (usuario encontrado), mostramos el modal
+        const data = await loginUsuario({
+          correo: email,
+          contrasena: password
+        });
+
         if (data) {
           localStorage.setItem("user", JSON.stringify(data));
           setIsLoggedIn(true);
         }
+
       } catch (error) {
-        // USAMOS LA VARIABLE AQUÍ PARA QUE DESAPAREZCA EL AVISO
         console.error("Error capturado:", error);
         setErrors([t.errorAuth]);
       }
@@ -85,33 +95,46 @@ function Login() {
   };
 
   return (
-    <div className="position-relative">
-      {/* (MODAL) */}
+    <div
+      className="container-fluid p-0"
+      style={{ backgroundColor: "#f8f9fa", position: "relative" }}
+    >
+
+      {/* MODAL ÉXITO */}
       {isLoggedIn && (
-        <div 
-          className="d-flex justify-content-center align-items-center"
+        <div
+          className="position-fixed top-0 start-0 w-100 vh-100 d-flex justify-content-center align-items-center"
           style={{
-            position: 'fixed',
-            top: 0, left: 0,
-            width: '100vw', height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-            zIndex: 1050 
+            zIndex: 1050,
+            backgroundColor: "rgba(0,0,0,0.6)"
           }}
         >
-          <div 
-            className="bg-white p-5 shadow-lg text-center" 
-            style={{ 
-              borderRadius: '15px', 
-              maxWidth: '450px', 
-              width: '90%'
-            }}
+          <div
+            className="bg-white p-5 rounded-4 shadow-lg text-center"
+            style={{ maxWidth: "400px", width: "90%" }}
           >
-            <h2 className="mb-2 fw-bold" style={{ color: '#333' }}>{t.welcome}</h2>
+            <FaCheckCircle
+              className="text-success mb-3"
+              style={{ fontSize: "3rem" }}
+            />
+
+            <h2
+              className="fw-bold mb-1"
+              style={{ color: "#333" }}
+            >
+              {t.successTitle}
+            </h2>
+
             <p className="text-muted mb-4">{t.success}</p>
-            <button 
-              className="btn btn-success w-100 py-2 fw-bold" 
-              style={{ backgroundColor: '#198754', borderRadius: '8px', border: 'none' }}
-              onClick={() => window.location.href = "/"}
+
+            <button
+              className="btn btn-success w-100 py-2 fw-bold"
+              style={{
+                backgroundColor: "#198754",
+                border: "none",
+                borderRadius: "10px"
+              }}
+              onClick={() => (window.location.href = "/")}
             >
               {t.continue}
             </button>
@@ -119,74 +142,165 @@ function Login() {
         </div>
       )}
 
-      {/* LOGIN */}
-      <div className={`container-fluid p-0 vh-100 d-flex flex-column ${isLoggedIn ? 'pe-none' : ''}`} style={{ filter: isLoggedIn ? 'blur(2px)' : 'none' }}>
-        <div className="row g-0 flex-grow-1">
-          <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4">
-            <div className="mb-4">
-              <span className={`lang ${language === "es" ? "active" : ""}`} onClick={() => setLanguage("es")} style={{ cursor: 'pointer' }}>Español</span>
-              {" | "}
-              <span className={`lang ${language === "en" ? "active" : ""}`} onClick={() => setLanguage("en")} style={{ cursor: 'pointer' }}>English</span>
-            </div>
+      <div className="row g-0 vh-100">
 
-            <form className="w-75" style={{ maxWidth: '400px' }} onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="text-muted small mb-1">{t.email}</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder={t.emailPlaceholder}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{ borderColor: email.length > 0 ? (email.includes("@") ? "green" : "red") : "" }}
-                />
-              </div>
+        {/* FORMULARIO */}
+        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-4 shadow">
 
-              <div className="mb-3">
-                <label className="text-muted small mb-1">{t.password}</label>
-                <div className="input-group">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control border-end-0"
-                    placeholder={t.passwordPlaceholder}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <span className="input-group-text bg-white border-start-0" onClick={togglePassword} style={{ cursor: "pointer" }}>
-                    {showPassword ? <FaEye /> : <FaEyeSlash />}
-                  </span>
-                </div>
-              </div>
+          {/* IDIOMAS */}
+          <div className="mb-4">
+            <span
+              className="px-2"
+              onClick={() => setLanguage("es")}
+              style={{
+                cursor: "pointer",
+                fontWeight: language === "es" ? "bold" : "normal",
+                color: language === "es" ? "#dc3545" : "black"
+              }}
+            >
+              ES
+            </span>
 
-              {errors.length > 0 && (
-                <div className="alert alert-danger py-2 small">
-                  {errors.map((err, index) => <div key={index}>{err}</div>)}
-                </div>
-              )}
+            <span className="text-muted">|</span>
 
-              <button type="submit" className="btn btn-outline-danger w-100 mb-3">{t.login}</button>
-              
-              <hr />
-
-              <div className="login-links d-flex justify-content-between">
-                <a href="#">{t.forgot}</a>
-                <a href="#">{t.register}</a>
-              </div>
-            </form>   
+            <span
+              className="px-2"
+              onClick={() => setLanguage("en")}
+              style={{
+                cursor: "pointer",
+                fontWeight: language === "en" ? "bold" : "normal",
+                color: language === "en" ? "#dc3545" : "black"
+              }}
+            >
+              EN
+            </span>
           </div>
 
-          <div
-            className="col-md-6 d-none d-md-block"
-            style={{
-              background: `url(${logoLogin}) center/cover no-repeat`
-            }}
-          ></div>
+          <form
+            className="w-75"
+            style={{ maxWidth: "450px" }}
+            onSubmit={handleSubmit}
+          >
+
+            {/* TITULOS */}
+            <div className="text-center mb-4">
+              <div className="badge bg-danger mb-2 px-3 py-2 text-uppercase">
+                {t.badge}
+              </div>
+
+              <h2 className="fw-bold text-dark m-0">
+                {t.welcome}
+              </h2>
+
+              <p className="text-muted small">
+                {t.subtitle}
+              </p>
+            </div>
+
+            {/* EMAIL */}
+            <div className="mb-3">
+              <label className="fw-semibold text-muted small mb-1">
+                {t.email}
+              </label>
+
+              <input
+                type="email"
+                className="form-control form-control-lg shadow-sm"
+                placeholder={t.emailPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* PASSWORD */}
+            <div className="mb-3">
+              <label className="fw-semibold text-muted small mb-1">
+                {t.password}
+              </label>
+
+              <div className="input-group">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="form-control form-control-lg shadow-sm border-end-0"
+                  placeholder={t.passwordPlaceholder}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+
+                <span
+                  className="input-group-text bg-white border-start-0 shadow-sm"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </span>
+              </div>
+            </div>
+
+            {/* ERRORES */}
+            {errors.length > 0 && (
+              <div className="alert alert-danger py-2 small text-center border-0 shadow-sm">
+                {errors.map((err, index) => (
+                  <div key={index}>{err}</div>
+                ))}
+              </div>
+            )}
+
+            {/* BOTON */}
+            <button
+              type="submit"
+              className="btn btn-danger btn-lg w-100 mb-3 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-2"
+            >
+              <FaSignInAlt /> {t.login}
+            </button>
+
+            {/* LINKS */}
+            <div className="text-center mt-3 pt-3 border-top">
+              <div className="mb-2">
+                <a
+                  href="#"
+                  className="text-decoration-none small text-muted"
+                >
+                  {t.forgot}
+                </a>
+              </div>
+
+              <a
+                href="/registro"
+                className="text-decoration-none small text-danger fw-bold"
+              >
+                {t.register}
+              </a>
+            </div>
+
+          </form>
         </div>
 
-        <footer className="bg-dark text-white text-center p-3">
-          {t.footer}
-        </footer>
+        {/* IMAGEN */}
+        <div
+          className="col-md-6 d-none d-md-block position-relative"
+          style={{
+            background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url(${logoLogin}) center/cover no-repeat`
+          }}
+        >
+          <div className="position-absolute bottom-0 start-0 p-5 text-white">
+            <h1 className="display-4 fw-bold m-0">
+              Ticket Plus+
+            </h1>
+
+            <p className="lead opacity-75">
+              Tu entrada a los mejores eventos.
+            </p>
+          </div>
+        </div>
       </div>
+
+      {/* FOOTER */}
+      <footer className="bg-dark text-white text-center p-3 small">
+        {t.footer}
+      </footer>
     </div>
   );
 }

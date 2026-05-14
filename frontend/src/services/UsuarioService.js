@@ -23,7 +23,8 @@ export const loginUsuario = async (credenciales) => {
 
 export const registrarUsuario = async (nuevoUsuario) => {
     try {
-        const respuesta = await fetch(API_URL, {
+        // CORRECCIÓN: Se agregó `${API_URL}/registro` para que coincida con el @PostMapping del Controller
+        const respuesta = await fetch(`${API_URL}/registro`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +33,9 @@ export const registrarUsuario = async (nuevoUsuario) => {
         });
 
         if (!respuesta.ok) {
-            throw new Error("Error al registrar el usuario");
+            // Esto nos ayudará a ver en la consola si el error es por correo duplicado (400) u otro
+            const errorData = await respuesta.text();
+            throw new Error(errorData || "Error al registrar el usuario");
         }
 
         return await respuesta.json();
