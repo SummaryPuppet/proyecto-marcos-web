@@ -145,11 +145,14 @@ export default function Inicio() {
                   <div className="card-body">
                     <p
                       className="card-text mb-0 fw-bold"
-                      style={{ color: "black" }}
+                      style={{ color: "black", fontSize: "1.5rem" }}
                     >
                       EVENTO {evento.id}
                     </p>
-                    <p className="card-text text-secondary small">
+                    <p
+                      className="card-text text-secondary small"
+                      style={{ fontSize: "0.9rem" }}
+                    >
                       17 Mayo - 6:00 PM
                     </p>
                   </div>
