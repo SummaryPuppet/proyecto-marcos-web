@@ -1,23 +1,43 @@
-// No usamos import porque lo bajaste por el index.html
 const API_URL = "http://localhost:8080/api/usuarios";
 
 export const loginUsuario = async (credenciales) => {
     try {
-        // Usamos window.axios para que reconozca el script del HTML
-        const respuesta = await window.axios.post(`${API_URL}/login`, credenciales);
-        return respuesta.data; 
+        const respuesta = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credenciales)
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Credenciales incorrectas");
+        }
+
+        return await respuesta.json(); 
     } catch (error) {
-        console.error("Error en la autenticación:", error);
+        console.error("Error en loginUsuario:", error);
         throw error;
     }
 };
 
 export const registrarUsuario = async (nuevoUsuario) => {
     try {
-        const respuesta = await window.axios.post(API_URL, nuevoUsuario);
-        return respuesta.data;
+        const respuesta = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoUsuario)
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Error al registrar el usuario");
+        }
+
+        return await respuesta.json();
     } catch (error) {
-        console.error("Error al registrar usuario:", error);
+        console.error("Error en registrarUsuario:", error);
         throw error;
     }
 };

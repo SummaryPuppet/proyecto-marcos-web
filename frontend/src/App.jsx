@@ -9,6 +9,8 @@ import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
 import VerBoletos from "./pages/VerBoletos";
 import Evento3 from "./pages/eventos/Evento3";
+import Registro from "./pages/Registro";
+import Perfil from "./pages/Perfil";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/evento-3" element={<Evento3 />} />
         <Route path="/evento-5" element={<Evento5 />} />
         <Route path="/Evento-6" element={<Evento6 />} />
+        <Route path="/registro" element={<Registro />} />
+        <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </BrowserRouter>
   );
