@@ -1,10 +1,10 @@
-import "../../css/evento4";
-import LayoutPrincipal from "../../layouts/LayoutPrincipal";
-import Eventos from "../../assets/img/evento4.jpg";
+import Eventos from "../../assets/img/evento4.png";
 import EventosF from "../../assets/img/map4.png";
-function Evento4(){
-    return(
-<LayoutPrincipal>
+import "../../css/evento4.css";
+import LayoutPrincipal from "../../layouts/LayoutPrincipal";
+function Evento4() {
+  return (
+    <LayoutPrincipal>
       {/* Sección Hero */}
       <section className="seccion-principal" style={{ height: "100%" }}>
         <img
@@ -31,7 +31,12 @@ function Evento4(){
             <div className="tabla-precios">
               {/* PLATINUM */}
               <div className="fila-precios d-flex align-items-center border-bottom py-2">
-                <div className="bg-success text-white p-2 etiqueta-fila" style={{ minWidth: '100px' }}>PLATINUM</div>
+                <div
+                  className="bg-success text-white p-2 etiqueta-fila"
+                  style={{ minWidth: "100px" }}
+                >
+                  PLATINUM
+                </div>
                 <div className="celda-precio px-3 text-center">
                   <div className="small fw-bold">PREVENTA FANS</div>
                   <div className="precio">S/ 230.00</div>
@@ -44,7 +49,12 @@ function Evento4(){
 
               {/* VIP */}
               <div className="fila-precios d-flex align-items-center border-bottom py-2">
-                <div className="bg-secondary text-white p-2 etiqueta-fila" style={{ minWidth: '100px' }}>VIP</div>
+                <div
+                  className="bg-secondary text-white p-2 etiqueta-fila"
+                  style={{ minWidth: "100px" }}
+                >
+                  VIP
+                </div>
                 <div className="celda-precio px-3 text-center">
                   <div className="small fw-bold">PREVENTA FANS</div>
                   <div className="precio">S/ 200.00</div>
@@ -57,7 +67,12 @@ function Evento4(){
 
               {/* GENERAL */}
               <div className="fila-precios d-flex align-items-center py-2">
-                <div className="bg-primary text-white p-2 etiqueta-fila" style={{ minWidth: '100px' }}>GENERAL</div>
+                <div
+                  className="bg-primary text-white p-2 etiqueta-fila"
+                  style={{ minWidth: "100px" }}
+                >
+                  GENERAL
+                </div>
                 <div className="celda-precio px-3 text-center">
                   <div className="small fw-bold">PREVENTA FANS</div>
                   <div className="precio">S/ 150.00</div>
@@ -77,7 +92,7 @@ function Evento4(){
         <h3 className="mb-4">
           Obtén tus tickets para ver VOCES DEL ROCK LATINO MOYOBAMBA
         </h3>
-        
+
         <div className="d-grid gap-3 col-lg-6 mx-auto">
           <button className="btn btn-dark w-100 py-3 fw-bold">
             PREVENTA FANS
@@ -92,7 +107,10 @@ function Evento4(){
         </div>
 
         <div className="mt-3">
-          <small className="text-muted text-decoration-underline" style={{ cursor: 'pointer' }}>
+          <small
+            className="text-muted text-decoration-underline"
+            style={{ cursor: "pointer" }}
+          >
             ¿Cómo comprar en la web?
           </small>
         </div>
@@ -101,21 +119,24 @@ function Evento4(){
       {/* Descripción */}
       <section className="descripcion bg-dark py-5 text-center text-white">
         <div className="container">
-          <p className="h4 text-uppercase mb-3"><strong>Prepárate Moyobamba</strong></p>
+          <p className="h4 text-uppercase mb-3">
+            <strong>Prepárate Moyobamba</strong>
+          </p>
           <p className="lead">
             Para una noche que marcará generaciones. Un concierto donde la
-            nostalgia, la rebeldía y el amor por el rock en español se unen en un
-            mismo escenario.
+            nostalgia, la rebeldía y el amor por el rock en español se unen en
+            un mismo escenario.
           </p>
           <p>
-            Revive la energía de <strong>Fer Sosa - GUSTAVO CERATI</strong>, canta a todo pulmón los
-            clásicos de <strong>ENANITOS VERDES</strong> con Gael García, siente la fuerza de <strong>LOS
-            PRISIONEROS</strong> con Chris Victorio.
+            Revive la energía de <strong>Fer Sosa - GUSTAVO CERATI</strong>,
+            canta a todo pulmón los clásicos de <strong>ENANITOS VERDES</strong>{" "}
+            con Gael García, siente la fuerza de{" "}
+            <strong>LOS PRISIONEROS</strong> con Chris Victorio.
           </p>
         </div>
       </section>
     </LayoutPrincipal>
-    )
-};
+  );
+}
 
 export default Evento4;
