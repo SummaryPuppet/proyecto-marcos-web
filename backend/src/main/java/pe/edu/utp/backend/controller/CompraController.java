@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 import pe.edu.utp.backend.entity.Compra;
-import pe.edu.utp.backend.entity.DetalleCompra;
 import pe.edu.utp.backend.entity.Entrada;
 import pe.edu.utp.backend.service.CompraService;
 
@@ -30,12 +30,6 @@ public class CompraController {
     public ResponseEntity<Compra> crearCompra(@RequestBody Compra compra) {
         return ResponseEntity.status(HttpStatus.CREATED).body(compraService.Newcompra(compra));
     }
-
-    @PostMapping("/detalle")
-    public ResponseEntity<DetalleCompra> guardarDetalle(@RequestBody DetalleCompra detalle) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(compraService.newdetalle(detalle));
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Compra> actualizarCompra(@PathVariable Long id, @RequestBody Compra compra) {
         return ResponseEntity.ok(compraService.actualizarCompra(id, compra));
@@ -52,4 +46,12 @@ public class CompraController {
         compraService.DeleteCompra(id);
         return ResponseEntity.noContent().build();
     }
-}
+    @GetMapping("/{id}")
+	public ResponseEntity<Compra> compraPorid(@PathVariable Long id) {
+		return ResponseEntity.of(compraService.compraPorId(id));
+	}
+    @GetMapping
+	public ResponseEntity<List<Compra>> obtenerTodos() {
+		return ResponseEntity.ok(compraService.listcompras());
+	}
+	}
