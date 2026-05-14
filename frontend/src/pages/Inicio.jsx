@@ -22,7 +22,7 @@ export default function Inicio() {
   const heroSlides = eventos.map((evento, index) => ({
     ...evento,
     title: `Evento ${evento.id}`,
-    subtitle: "Descubre la programación destacada de la semana",
+    subtitle: "No te pierdas este evento destacado en nuestra plataforma",
     active: index === 0,
   }));
 
