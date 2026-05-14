@@ -11,6 +11,7 @@ import VerBoletos from "./pages/VerBoletos";
 import Evento3 from "./pages/eventos/Evento3";
 import Registro from "./pages/Registro";
 import Perfil from "./pages/Perfil";
+import Compras from "./pages/compras";
 
 function App() {
   return (
@@ -20,12 +21,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/nosotros" element={<Informacion />} />
+        <Route path="/compras" element={<Compras />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ver-boletos" element={<VerBoletos />} />
         <Route path="/evento-1" element={<Evento1 />} />
         <Route path="/evento-3" element={<Evento3 />} />
         <Route path="/evento-5" element={<Evento5 />} />
         <Route path="/Evento-6" element={<Evento6 />} />
+        {/* Tus nuevas rutas */}
         <Route path="/registro" element={<Registro />} />
         <Route path="/perfil" element={<Perfil />} />
       </Routes>
