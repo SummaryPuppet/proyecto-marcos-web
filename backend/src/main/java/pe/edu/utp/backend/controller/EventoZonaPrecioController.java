@@ -4,51 +4,51 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
 
-import pe.edu.utp.backend.entity.Lugar;
+import pe.edu.utp.backend.entity.EventoZonaPrecio;
 
-import pe.edu.utp.backend.service.LugarService;
+import pe.edu.utp.backend.service.EventoZonaPrecioService;
 
 import java.util.List;
 
 @RestController
 
-@RequestMapping("/api/lugares")
+@RequestMapping("/api/evento-zona-precio")
 
 @RequiredArgsConstructor
 
 @CrossOrigin(origins = "http://localhost:5173")
 
-public class LugarController {
+public class EventoZonaPrecioController {
 
-    private final LugarService service;
+    private final EventoZonaPrecioService service;
 
     @GetMapping
-    public List<Lugar> listar() {
+    public List<EventoZonaPrecio> listar() {
 
         return service.listar();
     }
 
     @GetMapping("/{id}")
-    public Lugar buscarPorId(
+    public EventoZonaPrecio buscarPorId(
             @PathVariable Long id) {
 
         return service.buscarPorId(id);
     }
 
     @PostMapping
-    public Lugar guardar(
-            @RequestBody Lugar lugar) {
+    public EventoZonaPrecio guardar(
+            @RequestBody EventoZonaPrecio eventoZonaPrecio) {
 
-        return service.guardar(lugar);
+        return service.guardar(eventoZonaPrecio);
     }
 
     @PutMapping("/{id}")
-    public Lugar actualizar(
+    public EventoZonaPrecio actualizar(
             @PathVariable Long id,
 
-            @RequestBody Lugar lugar) {
+            @RequestBody EventoZonaPrecio eventoZonaPrecio) {
 
-        return service.actualizar(id, lugar);
+        return service.actualizar(id, eventoZonaPrecio);
     }
 
     @DeleteMapping("/{id}")

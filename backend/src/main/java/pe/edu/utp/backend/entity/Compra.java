@@ -26,4 +26,8 @@ public class Compra {
 
     @ManyToMany
     private Set<Usuario> usuarios;
+
+    @ManyToOne
+    @JoinColumn(name = "id_promocion")
+    private Promocion promocion;
 }

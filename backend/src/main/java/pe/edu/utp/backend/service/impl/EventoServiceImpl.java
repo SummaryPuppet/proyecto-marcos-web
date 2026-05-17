@@ -1,52 +1,61 @@
 package pe.edu.utp.backend.service.impl;
 
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import pe.edu.utp.backend.entity.Evento;
+import pe.edu.utp.backend.entity.Lugar;
 import pe.edu.utp.backend.repository.EventoRepository;
+import pe.edu.utp.backend.repository.LugarRepository;
 import pe.edu.utp.backend.service.EventoService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class EventoServiceImpl implements EventoService {
 
     private final EventoRepository eventoRepository;
 
-    public EventoServiceImpl(EventoRepository eventoRepository) {
-        this.eventoRepository = eventoRepository;
-    }
+    private final LugarRepository lugarRepository;
 
     @Override
-    public Evento crear(Evento evento) {
-        return eventoRepository.save(evento);
-    }
-
-    @Override
-    public Optional<Evento> obtenerPorId(Long id) {
-        return eventoRepository.findById(id);
-    }
-
-    @Override
-    public List<Evento> obtenerTodos() {
+    public List<Evento> listar() {
         return eventoRepository.findAll();
     }
 
     @Override
-    public Evento actualizar(Long id, Evento evento) {
-        Evento existente = eventoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento no encontrado con id: " + id));
+    public Evento buscarPorId(Long id) {
+        return eventoRepository.findById(id).orElse(null);
+    }
 
-        evento.setId_evento(existente.getId_evento());
+    @Override
+    public Evento guardar(Evento evento) {
+
+        Lugar lugar = lugarRepository.findById(
+                evento.getLugar().getId_lugar()).orElseThrow();
+
+        evento.setLugar(lugar);
+
         return eventoRepository.save(evento);
     }
 
     @Override
+    public Evento actualizar(Long id, Evento nuevo) {
+
+        Evento actual = eventoRepository.findById(id).orElseThrow();
+
+        actual.setTitulo(nuevo.getTitulo());
+        actual.setDescripcion(nuevo.getDescripcion());
+        actual.setFecha_evento(nuevo.getFecha_evento());
+        actual.setHora_evento(nuevo.getHora_evento());
+        actual.setImagen(nuevo.getImagen());
+        actual.setEstado(nuevo.getEstado());
+
+        return eventoRepository.save(actual);
+    }
+
+    @Override
     public void eliminar(Long id) {
-        Evento existente = eventoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento no encontrado con id: " + id));
-        eventoRepository.delete(existente);
+        eventoRepository.deleteById(id);
     }
 }
