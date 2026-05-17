@@ -1,7 +1,6 @@
 package pe.edu.utp.backend.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.utp.backend.entity.Evento;
 import pe.edu.utp.backend.service.EventoService;
@@ -10,38 +9,36 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/eventos")
-@CrossOrigin(origins = "*")
+@RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class EventoController {
 
 	private final EventoService eventoService;
 
-	public EventoController(EventoService eventoService) {
-		this.eventoService = eventoService;
-	}
-
-	@PostMapping
-	public ResponseEntity<Evento> crear(@RequestBody Evento evento) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(eventoService.crear(evento));
+	@GetMapping
+	public List<Evento> listar() {
+		return eventoService.listar();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Evento> obtenerPorId(@PathVariable Long id) {
-		return ResponseEntity.of(eventoService.obtenerPorId(id));
+	public Evento buscarPorId(@PathVariable Long id) {
+		return eventoService.buscarPorId(id);
 	}
 
-	@GetMapping
-	public ResponseEntity<List<Evento>> obtenerTodos() {
-		return ResponseEntity.ok(eventoService.obtenerTodos());
+	@PostMapping
+	public Evento guardar(@RequestBody Evento evento) {
+		return eventoService.guardar(evento);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Evento> actualizar(@PathVariable Long id, @RequestBody Evento evento) {
-		return ResponseEntity.ok(eventoService.actualizar(id, evento));
+	public Evento actualizar(
+			@PathVariable Long id,
+			@RequestBody Evento evento) {
+		return eventoService.actualizar(id, evento);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+	public void eliminar(@PathVariable Long id) {
 		eventoService.eliminar(id);
-		return ResponseEntity.noContent().build();
 	}
 }

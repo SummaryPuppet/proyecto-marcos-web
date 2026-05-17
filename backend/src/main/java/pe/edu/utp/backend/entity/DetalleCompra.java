@@ -1,5 +1,7 @@
 package pe.edu.utp.backend.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,14 +16,19 @@ public class DetalleCompra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_detalle;
 
-    private Double precio_unitario;
+    private BigDecimal precio_unitario;
+
+    private Integer cantidad;
+
+    private BigDecimal subtotal;
 
     @ManyToOne
-    @JoinColumn( name = "id_compra")
+    @JoinColumn(name = "id_compra")
     private Compra compra;
-    @ManyToOne
-    @JoinColumn( name = "id_entrada")
-    private Entrada entrada;
 
+    @ManyToOne
+    @JoinColumn(name = "id_evento_zona_precio")
+
+    private EventoZonaPrecio eventoZonaPrecio;
 
 }

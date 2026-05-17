@@ -1,5 +1,6 @@
 package pe.edu.utp.backend.service;
 
+import pe.edu.utp.backend.dto.PromocionResponse;
 import pe.edu.utp.backend.entity.Promocion;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface PromocionService {
     Promocion actualizarPromocion(Integer id, Promocion promocion);
 
     void eliminarPromocion(Integer id);
+
+    PromocionResponse validarPromocion(String codigo);
 }

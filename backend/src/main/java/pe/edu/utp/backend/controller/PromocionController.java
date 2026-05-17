@@ -1,5 +1,7 @@
 package pe.edu.utp.backend.controller;
 
+import pe.edu.utp.backend.dto.PromocionRequest;
+import pe.edu.utp.backend.dto.PromocionResponse;
 import pe.edu.utp.backend.entity.Promocion;
 import pe.edu.utp.backend.service.PromocionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/promociones")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class PromocionController {
 
     @Autowired
@@ -49,5 +51,14 @@ public class PromocionController {
         service.eliminarPromocion(id);
 
         return ResponseEntity.ok("Promoción eliminada correctamente");
+    }
+
+    @PostMapping("/validar")
+    public ResponseEntity<PromocionResponse> validarPromocion(
+            @RequestBody PromocionRequest request) {
+
+        return ResponseEntity.ok(
+                service.validarPromocion(
+                        request.getCodigo()));
     }
 }

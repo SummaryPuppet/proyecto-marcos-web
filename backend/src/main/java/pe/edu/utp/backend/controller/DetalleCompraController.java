@@ -1,75 +1,60 @@
 package pe.edu.utp.backend.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import pe.edu.utp.backend.entity.DetalleCompra;
-import pe.edu.utp.backend.repository.DetalleCompraRepository;
+
+import pe.edu.utp.backend.service.DetalleCompraService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/detalle-compras")
-@CrossOrigin("*")
+
+@RequestMapping("/api/detalle-compra")
+
+@RequiredArgsConstructor
+
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class DetalleCompraController {
 
-    @Autowired
-    private DetalleCompraRepository repository;
+    private final DetalleCompraService service;
 
-    // ===== LISTAR =====
     @GetMapping
     public List<DetalleCompra> listar() {
-        return repository.findAll();
+
+        return service.listar();
     }
 
-    // ===== BUSCAR POR ID =====
     @GetMapping("/{id}")
-    public DetalleCompra obtener(@PathVariable Long id) {
-        return repository.findById(id).orElse(null);
+    public DetalleCompra buscarPorId(
+            @PathVariable Long id) {
+
+        return service.buscarPorId(id);
     }
 
-    // ===== CREAR =====
     @PostMapping
     public DetalleCompra guardar(
-            @RequestBody DetalleCompra detalleCompra
-    ) {
+            @RequestBody DetalleCompra detalleCompra) {
 
-        return repository.save(detalleCompra);
+        return service.guardar(detalleCompra);
     }
 
-    // ===== ACTUALIZAR =====
     @PutMapping("/{id}")
     public DetalleCompra actualizar(
             @PathVariable Long id,
-            @RequestBody DetalleCompra detalleCompra
-    ) {
 
-        DetalleCompra actual =
-                repository.findById(id).orElse(null);
+            @RequestBody DetalleCompra detalleCompra) {
 
-        if (actual != null) {
-
-            actual.setPrecio_unitario(
-                    detalleCompra.getPrecio_unitario()
-            );
-
-            actual.setCompra(
-                    detalleCompra.getCompra()
-            );
-
-            actual.setEntrada(
-                    detalleCompra.getEntrada()
-            );
-
-            return repository.save(actual);
-        }
-
-        return null;
+        return service.actualizar(id, detalleCompra);
     }
 
-    // ===== ELIMINAR =====
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        repository.deleteById(id);
+    public void eliminar(
+            @PathVariable Long id) {
+
+        service.eliminar(id);
     }
 }
